@@ -1,21 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:netflix/models/released_in_past_year/released_image_only/released_get_image.dart';
 import 'package:netflix/presentation/home/widgets/playbuttonwidget.dart';
 import 'package:netflix/presentation/home/widgets/buttonwidget.dart';
 
 class BackGroundCardWidget extends StatelessWidget {
-  const BackGroundCardWidget({super.key});
+
+  BackGroundCardWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Container(
-          height: 600,
-          width: double.infinity,
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage('assets/images/lastofuscover.jpg'),
-                  fit: BoxFit.cover)),
+        FutureBuilder(
+          future: mainImage(),
+          builder: (context, snapshot) {
+            return    Container(
+            height: 600,
+            width: double.infinity,
+            decoration:  BoxDecoration(
+                image: DecorationImage(
+                    image: NetworkImage('https://image.tmdb.org/t/p/w200${snapshot.data?[5].posterPath}'),
+                    fit: BoxFit.contain)),
+          );
+          },
+       
         ),
         Positioned(
           left: 0,

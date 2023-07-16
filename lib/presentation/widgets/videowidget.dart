@@ -15,10 +15,7 @@ class VideoCardWidget extends StatelessWidget {
         SizedBox(
           height: 200,
           width: double.infinity,
-          child: Image.asset(
-            image,
-            fit: BoxFit.cover,
-          ),
+          child: Image(image: NetworkImage(image))
         ),
         Positioned(
           bottom: 10,

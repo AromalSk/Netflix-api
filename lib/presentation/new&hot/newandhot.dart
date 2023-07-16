@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:netflix/core/colors/colors.dart';
+import 'package:netflix/models/released_in_past_year/released_image_only/released_get_image.dart';
 import 'package:netflix/presentation/new&hot/widgets/comingsoonwidget.dart';
 import 'package:netflix/presentation/new&hot/widgets/everyoneswhatchingwidget.dart';
 import '../../core/constants.dart';
@@ -59,16 +60,39 @@ class NewAndHot extends StatelessWidget {
 }
 
 Widget _builComingsoon() {
-  return ListView.builder(
-    itemCount: 10,
-    itemBuilder: (context, index) {
-      return const ComingSoonWidget();
+  return FutureBuilder(
+    future: getComingSoon(),
+    builder: (context, snapshot) {
+      return  snapshot.hasData ?   ListView.builder(    
+      itemBuilder: (context, index) {
+        return ComingSoonWidget(
+        imageComing: 'https://image.tmdb.org/t/p/w500${snapshot.data?[index].backdropPath!}',
+        title: snapshot.data?[index].title,
+        overview: snapshot.data?[index].overview,
+        date: snapshot.data?[index].releaseDate,
+        );
+      },
+       itemCount: snapshot.data?.length,
+    ): Center(child: CircularProgressIndicator());
     },
+  
   );
 }
 
 Widget _buildEveryonsWhatching() {
-  return ListView.builder(
-      itemCount: 10,
-      itemBuilder: (context, index) => const EveryOnesWhatchingwidget());
+  return FutureBuilder(
+    future: getPastRelease(),
+    builder: (context, snapshot) {
+      return snapshot.hasData? ListView.builder(
+       
+        itemBuilder: (context, index) =>  EveryOnesWhatchingwidget(
+          imageComing: 'https://image.tmdb.org/t/p/w500${snapshot.data?[index].backdropPath!}',
+          overview: snapshot.data?[index].overview,
+          title: snapshot.data?[index].title,
+        ),
+         itemCount: snapshot.data?.length,
+        ): Center(child: CircularProgressIndicator());
+    },
+   
+  );
 }

@@ -30,17 +30,17 @@ class HomeScreen extends StatelessWidget {
           child: Stack(
             children: [
               ListView(
-                children: const [
+                children:  [
                   BackGroundCardWidget(),
-                  MainTitleCard(title: 'Released in the Past Year'),
+                  MainTitleCard(title: 'Classics'),
                   kheigth,
-                  MainTitleCard(title: 'Trending Now'),
+                  Trending(title: 'Trending Now'),
                   kheigth,
                   NumberTitleCard(),
                   kheigth,
-                  MainTitleCard(title: 'Tense Drama'),
+                  TenseDrama(title: 'Tense Drama'),
                   kheigth,
-                  MainTitleCard(title: 'South Indian Cinema'),
+                  TvSeries(title: 'TV series'),
                 ],
               ),
               scrollnotifier.value == true

@@ -5,8 +5,11 @@ import 'package:netflix/presentation/home/widgets/buttonWidget.dart';
 import 'package:netflix/presentation/widgets/videowidget.dart';
 
 class EveryOnesWhatchingwidget extends StatelessWidget {
-  const EveryOnesWhatchingwidget({
-    super.key,
+     String imageComing;
+   String title;
+   String overview;
+   EveryOnesWhatchingwidget({
+    super.key,required this.imageComing,required this.overview,required this.title
   });
 
   @override
@@ -17,17 +20,17 @@ class EveryOnesWhatchingwidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           kheigth,
-          const Text(
-            'The Last of Us',
+           Text(
+            title,
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           kheigth,
-          const Text(
-            'Twenty years after modern civilization has been destroyed, Joel, a hardened survivor, is hired to smuggle Ellie, a 14-year-old girl, out of an oppressive quarantine zone. What starts as a small job soon becomes a brutal, heartbreaking journey, as they both must traverse the United States and depend on each other for survival.s',
+           Text(
+            overview,
             style: TextStyle(color: kgreycolor),
           ),
           kheight50,
-          const VideoCardWidget(image: 'assets/images/last-of-us.jpg'),
+           VideoCardWidget(image: imageComing),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: const [

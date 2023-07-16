@@ -3,12 +3,21 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:netflix/core/constants.dart';
 import 'package:netflix/presentation/home/widgets/buttonWidget.dart';
 import 'package:netflix/presentation/widgets/videowidget.dart';
-
 import '../../../core/colors/colors.dart';
 
+
+
 class ComingSoonWidget extends StatelessWidget {
-  const ComingSoonWidget({
+   String imageComing;
+   String title;
+   String overview;
+   String date;
+  ComingSoonWidget({   
     super.key,
+    required this.overview,
+     required this.imageComing,
+     required this.title,
+     required this.date
   });
 
   @override
@@ -21,7 +30,7 @@ class ComingSoonWidget extends StatelessWidget {
           height: 500,
           child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
-              children: const [
+              children:  [
                 Text(
                   'FEB',
                   style: TextStyle(
@@ -44,23 +53,29 @@ class ComingSoonWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const VideoCardWidget(image: 'assets/images/demonslayer.jpg'),
+               VideoCardWidget(
+                  image: imageComing
+                    ),
               kheigth,
               Row(
                 children: [
-                  Text(
-                    'Demon Slayer',
-                    style: GoogleFonts.itim(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: -2),
+                  SizedBox(
+                    width: 200,
+                    child: Text(
+                      title,
+                      style: GoogleFonts.itim(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: -2),
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
                   const Spacer(),
                   Row(
                     children: const [
                       MainscreenButtonWidget(
                         icon: Icons.add_alert_rounded,
-                        title: 'Remaind me',
+                        title: 'Remind me',
                         textsize: 10,
                         iconsize: 20,
                       ),
@@ -77,17 +92,17 @@ class ComingSoonWidget extends StatelessWidget {
                 ],
               ),
               kheigth,
-              const Text('Coming on Friday'),
+               Text('Coming on $date'),
               kheigth,
-              const Text(
-                'Demon Slayer',
+              Text(
+                title,
                 style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
               ),
               kheigth,
-              const Text(
-                'It is the Taisho Period in Japan. Tanjiro, a kindhearted boy who sells charcoal for a living, finds his family slaughtered by a demon. To make matters worse, his younger sister Nezuko, the sole survivor, has been transformed into a demon herself. Though devastated by this grim reality, Tanjiro resolves to become a “demon slayer” so that he can turn his sister back into a human, and kill the demon that massacred his family.',
-                style: TextStyle(color: kgreycolor),
-              )
+               Text(
+                overview,
+                style: TextStyle(color: kgreycolor),overflow: TextOverflow.ellipsis,maxLines: 8,
+                           )
             ],
           ),
         ),

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class MainCardWidget extends StatelessWidget {
-  const MainCardWidget({
+  final String imgString;
+  MainCardWidget({
+    required this.imgString,
     super.key,
   });
 
@@ -15,10 +17,8 @@ class MainCardWidget extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             color: Colors.black,
-            image: const DecorationImage(
-                image:
-                    AssetImage('assets/images/b9ykj4v8ykjRoGB7SpI1OuxblNU.jpg'),
-                fit: BoxFit.cover)),
+            image: DecorationImage(
+                image: NetworkImage(imgString), fit: BoxFit.cover)),
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:netflix/core/constants.dart';
 import 'package:netflix/core/strings.dart';
+import 'package:netflix/models/released_in_past_year/released_image_only/released_get_image.dart';
 import 'package:netflix/presentation/download/widgets/downloadscreenimage.dart';
 
 import '../../../core/colors/colors.dart';
@@ -27,38 +28,44 @@ class SectionMid extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
         kheigth,
-        SizedBox(
-          height: size.width,
-          width: size.width,
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              Center(
-                child: CircleAvatar(
-                  backgroundColor: kgreycolor.withOpacity(0.5),
-                  radius: size.width * 0.35,
+        FutureBuilder(
+          future: getTrending(),
+          builder: (context, snapshot) {
+            return   SizedBox(
+            height: size.width,
+            width: size.width,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Center(
+                  child: CircleAvatar(
+                    backgroundColor: kgreycolor.withOpacity(0.5),
+                    radius: size.width * 0.35,
+                  ),
                 ),
-              ),
-              DownloadScreenImage(
-                size: Size(size.width * 0.4, size.width * 0.5),
-                image: '$imageaAppenturl}',
-                rotation: -15,
-                margin: const EdgeInsets.only(right: 150, bottom: 0),
-              ),
-              DownloadScreenImage(
-                size: Size(size.width * 0.4, size.width * 0.5),
-                image: '$imageaAppenturl}',
-                rotation: 15,
-                margin: const EdgeInsets.only(left: 150, bottom: 0),
-              ),
-              DownloadScreenImage(
-                size: Size(size.width * 0.4, size.width * 0.55),
-                image: '$imageaAppenturl',
-                rotation: 0,
-                margin: const EdgeInsets.only(top: 20),
-              ),
-            ],
-          ),
+                DownloadScreenImage(
+                  size: Size(size.width * 0.4, size.width * 0.5),
+                  image:'https://image.tmdb.org/t/p/w500${snapshot.data?[4].backdropPath!}' ,
+                  rotation: -15,
+                  margin: const EdgeInsets.only(right: 150, bottom: 0),
+                ),
+                DownloadScreenImage(
+                  size: Size(size.width * 0.4, size.width * 0.5),
+                  image: 'https://image.tmdb.org/t/p/w500${snapshot.data?[2].backdropPath!}',
+                  rotation: 15,
+                  margin: const EdgeInsets.only(left: 150, bottom: 0),
+                ),
+                DownloadScreenImage(
+                  size: Size(size.width * 0.4, size.width * 0.55),
+                  image: 'https://image.tmdb.org/t/p/w500${snapshot.data?[1].backdropPath!}',
+                  rotation: 0,
+                  margin: const EdgeInsets.only(top: 20),
+                ),
+              ],
+            ),
+          );
+          },
+        
         ),
       ],
     );
